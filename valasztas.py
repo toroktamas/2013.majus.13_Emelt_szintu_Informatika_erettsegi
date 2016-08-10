@@ -74,7 +74,7 @@ osszes = 12345
 for a in szavazat.values():
     szavazatleadas += int(a["szavazat"])    
 
-print("A valasztason {0} allampolgar , a jogosultak {1}%-a vett reszt.".format(szavazatleadas, round((osszes/szavazatleadas), 2)))
+print("A valasztason {0} allampolgar , a jogosultak {1}%-a vett reszt.".format(szavazatleadas, round((szavazatleadas/(osszes+szavazatleadas)), 2)))
 
 print("5. feladat")
 """Partokra leadott szavcazatok aranyat ki kell szamolni es ki kell irni a kepernyore."""
@@ -96,11 +96,11 @@ for a in szavazat.values():
     elif a["Part"] == "fuggetlen":
         Fuggetlen+=a["szavazat"]
 
-print("Gyumolcsevok Partja= {}%".format(round((szavazatleadas/GYEP), 2)))
-print("Husevok Partja= {}%".format(round((szavazatleadas/HEP), 2)))
-print("Tejivok Partja= {}%".format(round((szavazatleadas/TISZ), 2)))
-print("Zoldsegevok Partja= {}%".format(round((szavazatleadas/ZEP), 2)))
-print("Fuggetlenek Partja= {}%".format(round((szavazatleadas/Fuggetlen), 2)))
+print("Gyumolcsevok Partja= {}%".format(round((GYEP/(szavazatleadas+GYEP)), 2)))
+print("Husevok Partja= {}%".format(round((HEP/(szavazatleadas+HEP)), 2)))
+print("Tejivok Partja= {}%".format(round((TISZ/(szavazatleadas+TISZ)), 2)))
+print("Zoldsegevok Partja= {}%".format(round((ZEP/(szavazatleadas+ZEP)), 2)))
+print("Fuggetlenek Partja= {}%".format(round((Fuggetlen/(szavazatleadas+Fuggetlen)), 2)))
 
 print("6. feladat")
 """Legtobb szavazato gyujto kepviselo nevet es partjat ki kell iratni a kepernyore. """
@@ -145,11 +145,9 @@ kepviselok = {}
 listam = [egyes, kettes, harmas, negyes, otos, hatos, hetes, nyolcas]
 g = [1,2,3,4,5,6,7,8]
 
-for n in szavazat.values():    
-        print(n["szavazat"],"korte")
+for n in szavazat.values():
         for gf in g:
             if max(listam[int(gf-1)]) == int(n["szavazat"]):
-                print("szilva")
                 kepviselok[gf] = {}
                 kepviselok[gf]["nev"] = n["nev"]
                 kepviselok[gf]["part"] = n["Part"]
